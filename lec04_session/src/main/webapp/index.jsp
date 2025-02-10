@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>쿠키, 세션</title>
 </head>
-<body>
+<body>  
 	<h1>쿠키 연습하기</h1>
 	<ul>
 		<li>
