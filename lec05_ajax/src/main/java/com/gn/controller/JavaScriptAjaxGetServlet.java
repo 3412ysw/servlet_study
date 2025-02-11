@@ -1,8 +1,6 @@
 package com.gn.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,26 +8,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/changePage")
-public class ChangePageServlet extends HttpServlet {
+@WebServlet("/jsAjaxGet")
+public class JavaScriptAjaxGetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
     
-    public ChangePageServlet() {
+    public JavaScriptAjaxGetServlet() {
         super();
+      
     }
 
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view 
-		//어디에서 문제가 생긴건지 찾기 힘듦
-//				= request.getRequestDispatcher("/views/countPage.jsp");
-				= getServletContext().getRequestDispatcher("/views/countPage.jsp");
-		view.forward(request, response);
+		String userName = request.getParameter("userName");
+		// 1.응답할 문서의 형태를 선언
+		response.setContentType("text/html; charset=utf-8");
+		// 2.연결 통로 생성 후 문구 추가
+		response.getWriter().append("<h2>"+userName+"님이 만든 첫번째 ajax응답</h2>");
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

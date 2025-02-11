@@ -9,7 +9,13 @@
 <meta charset="UTF-8">
 <title>쿠키, 세션</title>
 </head>
-<body>  
+<body> 
+	<%if(session.isNew() || session.getAttribute("account")== null){ %> 
+	<a href="/login">로그인</a>
+	<%} else{%>
+		<a href="/logout">로그아웃</a>
+	<%} %>
+	
 	<h1>쿠키 연습하기</h1>
 	<ul>
 		<li>
@@ -33,9 +39,37 @@
  		<li>
  			<a href="/removeCookie">삭제하기</a>
  		</li>
- 		<li>
- 			<a href="/changePage">화면전환</a>
- 		</li>
 	</ul>
+	
+	<h2>조회수 카운트하기</h2>
+	<a href="/changePage">화면전환</a>
+	
+	<h2>세션 연습하기</h2>
+	<ol>
+		<li>
+			<a href="/createSession">생성하기</a>
+		</li>
+		<li>
+			<% //세션은 jsp의 내장객체 
+				String memberId = "세션없음";
+				if(session != null){
+					if(session.getAttribute("member_id")==null){
+						memberId = "세션없음";
+					}else{
+					//다운캐스팅
+					memberId = (String)session.getAttribute("member_id");	
+					}
+				}
+			%>
+			<%=memberId %>
+		</li>
+	</ol>
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

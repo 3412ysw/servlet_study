@@ -1,4 +1,4 @@
-package com.gn.controller;
+package com.gn.view;
 
 import java.io.IOException;
 
@@ -10,26 +10,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/changePage")
-public class ChangePageServlet extends HttpServlet {
+@WebServlet("/jsAjaxPage")
+public class JavaScriptAjaxPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
     
-    public ChangePageServlet() {
+    public JavaScriptAjaxPageServlet() {
         super();
+       
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view 
-		//어디에서 문제가 생긴건지 찾기 힘듦
-//				= request.getRequestDispatcher("/views/countPage.jsp");
-				= getServletContext().getRequestDispatcher("/views/countPage.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/js/test.jsp");
 		view.forward(request, response);
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
