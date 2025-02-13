@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 import com.gn.member.vo.Member;
+import static com.gn.common.sql.JDBCTemplate.close;
 
 public class MemberDao {
 
@@ -27,6 +28,7 @@ public class MemberDao {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
+			close(pstmt);
 		}
 		
 		return result;

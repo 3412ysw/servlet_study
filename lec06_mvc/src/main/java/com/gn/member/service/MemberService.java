@@ -6,6 +6,7 @@ import com.gn.member.dao.MemberDao;
 import com.gn.member.vo.Member;
 
 import static com.gn.common.sql.JDBCTemplate.getConnection;
+import static com.gn.common.sql.JDBCTemplate.close;
 
 public class MemberService {
 	private MemberDao md = new MemberDao();
@@ -18,6 +19,7 @@ public class MemberService {
 	public int createMember(Member member) {
 		Connection conn = getConnection();
 		int result = md.createMember(member, conn);
+		close(conn);
 		return result;
 	}
 	

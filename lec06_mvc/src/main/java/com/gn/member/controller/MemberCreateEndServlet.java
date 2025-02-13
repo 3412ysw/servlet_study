@@ -2,6 +2,7 @@ package com.gn.member.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +35,13 @@ public class MemberCreateEndServlet extends HttpServlet {
 	    
 	    //Service에 데이터 전달 
 	    int result = new MemberService().createMember(m);
+	    
+	    RequestDispatcher view 
+			= request.getRequestDispatcher("/views/member/create_fail.jsp");
+	    if(result>0) {
+	    	view = request.getRequestDispatcher("/views/member/create_success.jsp");
+	    }
+	    view.forward(request, response);
 	    
 	}
 
