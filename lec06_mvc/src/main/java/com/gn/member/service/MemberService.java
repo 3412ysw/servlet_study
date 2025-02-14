@@ -31,6 +31,21 @@ public class MemberService {
 		
 	}
 	
+	public int updateMember(String pw,String name,int no) {
+		Connection conn = getConnection();
+		int result = md.updateMember(pw,name,no, conn);
+		close(conn);
+		return result;
+		
+	}
+	
+	public Member selectMemberOne(int no) {
+		Connection conn = getConnection();
+		Member member = md.selectMemberOne(no,conn);
+	    close(conn);
+	    return member;
+		
+	}
 	
 	
 }

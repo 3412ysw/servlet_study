@@ -20,7 +20,7 @@
 						<a href="/memberLogout">로그아웃</a>
 					</li>
 					<li>
-						<a href="#">계정 수정</a>
+						<a href="/memberUpdate">계정 수정</a>
 					</li>
 				<%} %>
 			</ul>
