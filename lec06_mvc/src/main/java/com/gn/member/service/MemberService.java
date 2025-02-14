@@ -23,6 +23,14 @@ public class MemberService {
 		return result;
 	}
 	
+	public Member loginMember(String id, String pw) {
+		Connection conn = getConnection();
+		Member member = md.loginMember(id,pw,conn);
+	    close(conn);
+	    return member;
+		
+	}
+	
 	
 	
 }
