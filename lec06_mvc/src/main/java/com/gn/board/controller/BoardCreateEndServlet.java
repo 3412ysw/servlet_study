@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.json.simple.JSONObject;
 
+import com.gn.board.service.BoardService;
 import com.gn.board.vo.Attach;
 import com.gn.board.vo.Board;
 
@@ -28,6 +30,7 @@ public class BoardCreateEndServlet extends HttpServlet {
         super();
     }
 
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1.요청시에 전달된 데이터를 담을 바구니 
 		Board b = new Board();
@@ -92,6 +95,26 @@ public class BoardCreateEndServlet extends HttpServlet {
 			System.out.println(b);
 			System.out.println(a);
 			// 2. 지정한 경로에 파일 업로드 되었는지 확인
+			int result = new BoardService().createBoard(b,a);
+			
+//			RequestDispatcher view = request.getRequestDispatcher("/views/board/create_fail.jsp");
+			JSONObject obj = new JSONObject();
+			if(result>0) {
+//				view = request.getRequestDispatcher("/views/board/success.jsp");
+				obj.put("res_code", "200");
+				obj.put("res_msg", "정상적으로 게시글 등록되었습니다.");
+			}else {
+				obj.put("res_code", "500");
+				obj.put("res_msg", "게시글 등록 중 오류가 발생하였습니다,");
+				String deletePath = a.getAttachPath();
+				File deleteFile = new File(deletePath);
+				if(deleteFile.exists()) {
+					deleteFile.delete();
+				}
+			}
+			response.setContentType("application/json; charset=utf-8");
+			response.getWriter().print(obj);
+//			view.forward(request, response);
 			
 		}catch(Exception e){
 			e.printStackTrace();

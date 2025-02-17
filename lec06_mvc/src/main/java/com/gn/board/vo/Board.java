@@ -10,10 +10,11 @@ public class Board {
 	private int boardWriter;
 	private LocalDateTime regDate;
 	private LocalDateTime modDate;
+	private String memberName;
 	
 	public Board() {
 	}
-
+	
 	public Board(int boardNo, String boardTitle, String boardContent, int boardWriter, LocalDateTime regDate,
 			LocalDateTime modDate) {
 		this.boardNo = boardNo;
@@ -71,6 +72,17 @@ public class Board {
 	public void setModDate(LocalDateTime modDate) {
 		this.modDate = modDate;
 	}
+
+	
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
+
 
 	@Override
 	public String toString() {

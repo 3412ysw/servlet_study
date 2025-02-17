@@ -7,6 +7,7 @@
 <title>게시글 등록</title>
 <link href='<%=request.getContextPath()%>/resources/css/board/create.css' 
 rel="stylesheet" type="text/css">
+<script src="<%=request.getContextPath()%>/resources/js/jquery-3.7.1.js"></script>
 </head>
 <body>
 	<%@ include file="/views/include/header.jsp" %>
@@ -46,7 +47,25 @@ rel="stylesheet" type="text/css">
 				const type = val.substring(idx+1,val.length);
 				if(type=='jpg' || type == 'png' ||type=='jpeg'){
 					// console.log(val);
-					form.submit();
+					//form.submit();
+					const sendData = new FormData(form); // form안에 들어있는 데이터 키 벨류 형태로 객체화
+					$.ajax({
+						url:'/boardCreateEnd',
+						type:'post',
+						enctype:'multipart/form-data',
+						cache:false,
+						async:false,
+						contentType:false,
+						processData:false,
+						data:sendData, 
+						dataType:'json',
+						success:function(data){
+							alert(data.res_msg);
+							if(data.res_code==200){
+								location.href="/boardList";
+							}
+						}
+					})
 				}else{
 					alert('이미지 파일만 선택할 수 있습니다.');
 					form.board_file.value='';
