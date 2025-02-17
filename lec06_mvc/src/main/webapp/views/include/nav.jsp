@@ -17,6 +17,9 @@
 				</li>
 				<%}else{ %>
 					<li>
+						<a href="/boardCreate">게시물 등록</a>
+					</li>
+					<li>
 						<a href="/memberLogout">로그아웃</a>
 					</li>
 					<li>
