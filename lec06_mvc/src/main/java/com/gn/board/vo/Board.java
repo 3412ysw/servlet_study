@@ -13,8 +13,10 @@ public class Board extends Paging{
 	private LocalDateTime regDate;
 	private LocalDateTime modDate;
 	private String memberName;
-	private String newName;
+	private int attachNo;
 	
+	
+
 	public Board() {
 	}
 	
@@ -28,6 +30,14 @@ public class Board extends Paging{
 		this.modDate = modDate;
 	}
 
+	public int getAttachNo() {
+		return attachNo;
+	}
+	
+	public void setAttachNo(int attachNo) {
+		this.attachNo = attachNo;
+	}
+	
 	public int getBoardNo() {
 		return boardNo;
 	}
@@ -85,13 +95,6 @@ public class Board extends Paging{
 		this.memberName = memberName;
 	}
 
-	public String getNewName() {
-		return newName;
-	}
-
-	public void setNewName(String newName) {
-		this.newName = newName;
-	}
 
 	@Override
 	public String toString() {
