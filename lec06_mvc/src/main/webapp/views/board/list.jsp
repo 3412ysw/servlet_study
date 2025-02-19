@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.gn.board.vo.Board, java.util.*, java.time.format.*" %>
 <% List<Board> list = (List<Board>)request.getAttribute("resultList");%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html> 
 <head>
@@ -45,21 +46,24 @@
 						</tr>
 					</thead>
 					<tbody>
-						<%if(list.size()>0){
-							DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-							for(int i = 0 ; i<list.size() ; i++){%>
-								<tr data-board-no="<%=list.get(i).getBoardNo()%>">
-									<td><%=((paging.getNowPage()-1)*paging.getNumPerPage())+(i+1) %></td>
-									<td><%=list.get(i).getBoardTitle() %></td>
-									<td><%=list.get(i).getMemberName() %></td>
-									<td><%=dtf.format(list.get(i).getRegDate()) %></td>
+					<% DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");%>
+					<c:choose>
+						<c:when test="${not empty resultList }">
+							<c:forEach var="b" items="${resultList }" varStatus="vs">
+								<tr data-board-no="${b.boardNo }">
+									<td>${((paging.nowPage-1)*paging.numPerPage)+(vs.index+1)}</td>
+									<td>${b.boardTitle }</td>
+									<td>${b.memberName }</td>
+									<td>${b.regDate }</td>
 								</tr>
-							<%}
-						} else {%>
-						   <tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr>
 							<td colspan="4">조회된 목록이 없습니다.</td>
 						   </tr>
-						<%} %>						
+						</c:otherwise>
+					</c:choose>				
 					</tbody>
 				</table>
 			</div>
