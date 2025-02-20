@@ -14,7 +14,7 @@ public class Paging {
 	private int nowPage =1;
 	
 	// 페이징바 
-	private int pageBarSize = 5;
+	private int pageBarSize = 2;
 	private int pageBarStart;
 	private int pageBarEnd;
 	
